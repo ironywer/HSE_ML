@@ -11,6 +11,7 @@ The script can be run from the command line with optional arguments:
 The exported files will be placed in the specified output directory (default: _site).
 """
 
+
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [
