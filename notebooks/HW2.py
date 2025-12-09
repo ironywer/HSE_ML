@@ -54,11 +54,10 @@ def _():
 
 
 @app.cell
-def _(pd, mo):
+def _(pd):
     from pathlib import Path
 
-    notebook_path = mo.notebook_location()
-    data_dir = notebook_path.parent if notebook_path is not None else Path(__file__).resolve().parent
+    data_dir = Path(__file__).resolve().parent
 
     cities = pd.read_csv(data_dir / 'city.csv')
     print(cities.head() )
