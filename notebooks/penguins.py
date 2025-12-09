@@ -18,7 +18,8 @@ with app.setup:
     import altair as alt
     import pandas as pd
 
-    file = mo.notebook_location() / "public" / "penguins.csv"
+    notebook_dir = mo.notebook_location().parent
+    file = notebook_dir / "public" / "penguins.csv"
 
 @app.cell(hide_code=True)
 def _():
