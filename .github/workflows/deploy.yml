@@ -31,10 +31,18 @@ jobs:
 
       # 4. Экспортируем notebook
       - name: Export notebook
-        run: | 
-          ls
+        run: |
           mkdir -p output
-          marimo export html-wasm notebooks/HW2.py -o output/HW2.html --mode run
+          
+          # Экспортируем с опцией --embed
+          marimo export html-wasm notebooks/HW2.py -o output/index.html --mode run --embed
+    
+          # Проверяем
+          if [ -f "output/index.html" ]; then
+            echo "✓ index.html created with embedded WASM"
+            SIZE=$(wc -c < output/index.html)
+            echo "File size: $((SIZE/1024)) KB"
+          fi
 
       # 5. Загружаем артефакт
       - name: Upload Pages Artifact
