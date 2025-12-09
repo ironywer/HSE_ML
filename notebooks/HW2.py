@@ -4,6 +4,7 @@ __generated_with = "0.18.1"
 app = marimo.App()
 
 
+
 @app.cell
 def _():
     import pandas as pd
@@ -55,7 +56,7 @@ def _():
 @app.cell
 def _(pd):
     cities = pd.read_csv('city.csv')
-    print(cities.head())
+    print(cities.head() )
 
     calendar = pd.read_csv('Calendar.csv')
     calendar['calendar_date'] = pd.to_datetime(calendar['calendar_date'])
@@ -432,3 +433,4 @@ def _():
 
 if __name__ == "__main__":
     app.run()
+
