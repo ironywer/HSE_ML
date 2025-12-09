@@ -55,14 +55,18 @@ def _():
 
 @app.cell
 def _(pd):
-    cities = pd.read_csv('city.csv')
+    from pathlib import Path
+
+    data_dir = Path(__file__).resolve().parent
+
+    cities = pd.read_csv(data_dir / 'city.csv')
     print(cities.head() )
 
-    calendar = pd.read_csv('Calendar.csv')
+    calendar = pd.read_csv(data_dir / 'Calendar.csv')
     calendar['calendar_date'] = pd.to_datetime(calendar['calendar_date'])
     print(calendar.head())
 
-    passengers = pd.read_csv('passenger.csv')
+    passengers = pd.read_csv(data_dir / 'passenger.csv')
     passengers['first_call_time'] = pd.to_datetime(passengers['first_call_time'], errors='coerce')
 
     passengers['date_only'] = passengers['first_call_time'].dt.date
@@ -74,7 +78,7 @@ def _(pd):
         how='left'
     )
 
-    trips = pd.read_csv('trip.csv', nrows=10_000)
+    trips = pd.read_csv(data_dir / 'trip.csv', nrows=10_000)
     # trips.trip_distance.fillna(trips.trip_distance.mean())
     trips['call_time'] = pd.to_datetime(trips['call_time'])
     trips['finish_time'] = pd.to_datetime(trips['finish_time'])
